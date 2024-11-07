@@ -9,7 +9,8 @@ import sys
 import PassOne
 
 # defining global variables
-global SYMTAB, file_contents, program_name, start_address, begin
+global SYMTAB, file_contents, program_name, start_address, line_address, begin
+SYMTAB, file_contents, program_name, start_address, line_address, begin = {}, [], "", 0, 0, 0
 
 
 def main():
@@ -23,7 +24,7 @@ def main():
     out_file_name = input("Enter Object Code File Name: ")
     out_file_name.replace(" ", "")
 
-    SYMTAB, file_contents, program_name, start_address, begin = PassOne.pass_one(
+    SYMTAB, file_contents, program_name, start_address, line_address, begin = PassOne.pass_one(
         source_file)
 
 

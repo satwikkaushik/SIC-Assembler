@@ -134,6 +134,6 @@ def pass_one(source_file: str):
             file_contents.append(line)
 
     print("File parsing completed.")
-    return SYMTAB, file_contents, program_name, start_address, begin
+    return SYMTAB, file_contents, program_name, start_address, line_address, begin
 
 # here
