@@ -17,8 +17,8 @@ def write_E_record(PROG_START_ADDR: str) -> str:
 
 
 def write_T_record(start_addr: str, obj_codes: list) -> str:
-    length = len("".join(obj_codes)) // 2
     obj_code_str = "".join(obj_codes)
+    length = len(obj_code_str) // 2
     return f"T {start_addr.zfill(6)} {format(length, '02X')} {obj_code_str}\n"
 
 
@@ -53,6 +53,7 @@ def write_code(PROG_SIZE: str, out_file_name: str) -> None:
             if current_text_obj_codes:
                 out_file.write(write_T_record(
                     current_text_start_addr, current_text_obj_codes))
+
                 current_text_obj_codes = []
             current_text_start_addr = row[0]
             continue
@@ -62,6 +63,7 @@ def write_code(PROG_SIZE: str, out_file_name: str) -> None:
         if len("".join(current_text_obj_codes) + obj_code) > MAX_T_LEN:
             out_file.write(write_T_record(
                 current_text_start_addr, current_text_obj_codes))
+
             current_text_start_addr = row[0]
             current_text_obj_codes = []
 
